@@ -65,7 +65,7 @@ function Student() {
                         to={`/checkin/${course.course_code}`} // ส่ง course_code ผ่าน URL
                         className="text-blue-600 hover:text-blue-800"
                       >
-                        เช็คชื่อ
+                        เช็คชื่อไอซ์จ้าาาาาาาาา
                       </Link>
                     </td>
                   </tr>
