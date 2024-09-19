@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import Login from './pages/Login';  
 import StudentList from './pages/Student';
@@ -8,6 +7,8 @@ import AttenStat from './pages/AttenStat';
 import CheckIn from './pages/checkin'
 import CourseList from './pages/CourseList'
 import TeacherAddCourse  from './pages/TeacherAddCourse';
+import CheckNameInRoll from './pages/CheckNameInRoll';
+import EnrolledStudentsList  from './pages/EnrolledStudentsList';
 
 function App() {
   const token = localStorage.getItem('token'); 
@@ -26,6 +27,10 @@ function App() {
         <Route path="/checkinstatus/:course_code" element={<StdList/>} />
         <Route path="/AttenStat" element={<AttenStat/>} />
         <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
+        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
+        <Route path="/CheckNameInRoll" element={<CheckNameInRoll/>} />
+        <Route path="/enrollments/:course_code" element={<EnrolledStudentsList />} />
+
       </Routes>
     </Router>
   );
