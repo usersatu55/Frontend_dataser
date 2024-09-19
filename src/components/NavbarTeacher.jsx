@@ -108,6 +108,7 @@ function Navbar() {
                 <span className="ms-3">ตรวจสอบการเช็คชื่อ</span>
               </a>
             </li>
+            
             <li>
               <a
                 href="#"
@@ -133,7 +134,6 @@ function Navbar() {
                 <span className="ms-3">เพิ่มรายวิชา</span>
               </a>
             </li>
-
             <li>
               <a
                 href="#"

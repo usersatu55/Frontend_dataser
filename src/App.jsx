@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import Login from './pages/Login';  
 import StudentList from './pages/Student';
@@ -8,7 +7,10 @@ import AttenStat from './pages/AttenStat';
 import CheckIn from './pages/checkin'
 import CourseList from './pages/CourseList'
 import TeacherAddCourse  from './pages/TeacherAddCourse';
-
+import CheckNameInRoll from './pages/CheckNameInRoll';
+import EnrolledStudentsList  from './pages/EnrolledStudentsList';
+import Status from "./pages/status"
+import CourseListstd from './pages/CourseListstd';
 function App() {
   const token = localStorage.getItem('token'); 
   const isLoggedIn = !!token; 
@@ -23,9 +25,13 @@ function App() {
         <Route path="/AttenStat" element={isLoggedIn ? <AttenStat/> : <Navigate to="/" />} />
         <Route path="/checkin/:course_code" element={<CheckIn />} />
         <Route path="/CourseList/" element={<CourseList />} />
-        <Route path="/checkinstatus/:course_code" element={<StdList/>} />
-        <Route path="/AttenStat" element={<AttenStat/>} />
+        <Route path="/checkinstatus/:course_code" element={<StdList/>} />      
         <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
+        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
+        <Route path="/CheckNameInRoll" element={<CheckNameInRoll/>} />
+        <Route path="/enrollments/:course_code" element={<EnrolledStudentsList />} />
+        <Route path="/status/:course_code" element={<Status/>} />
+        <Route path="/CourseListstd/" element={<CourseListstd />} />
       </Routes>
     </Router>
   );

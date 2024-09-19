@@ -1,35 +1,26 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom"; 
-import Navbar from "../components/NavbarTeacher";
+import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
-function StdList() {
+function Status() {
   const { course_code } = useParams();
   const [attendance, setAttendance] = useState([]);
   const [courseName, setCourseName] = useState("");
   const [error, setError] = useState(null);
   const [status, setStatus] = useState("");
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/atten/byc`, {
-          params: { 
-            course_code, 
-            status, 
-            day: day || undefined, 
-            month: month || undefined, 
-            year: year || undefined 
-          },
+        const response = await axios.get('http://localhost:3000/enroll/by', {
+          params: { course_code, status },
         });
-  
-        if (response.data.Attendance.length > 0) {
+
+        if (response.data.Attendance && response.data.Attendance.length > 0) {
           setAttendance(response.data.Attendance);
-          setCourseName(response.data.Attendance[1].course_name); 
+          setCourseName(response.data.Attendance[0].course_name); // Assuming the course name is at index 0
         } else {
           setAttendance([]);
           setCourseName("");
@@ -39,38 +30,12 @@ function StdList() {
         setError("Failed to fetch attendance");
       }
     };
-  
-    fetchAttendance();
-  }, [course_code, status, day, month, year]);
 
-  const goToEnrolledStudents = () => {
-    navigate(`/enrollments/${course_code}`);
-  };
-  
+    fetchAttendance();
+  }, [course_code, status]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
-  };
-
-  const handleDayChange = (e) => {
-    setDay(e.target.value);
-  };
-
-  const handleMonthChange = (e) => {
-    setMonth(e.target.value);
-  };
-
-  const handleYearChange = (e) => {
-    setYear(e.target.value);
-  };
-
-  const goToAttenStat = () => {
-    navigate("/AttenStat", {
-      state: {
-        course_code: course_code,
-        course_name: courseName,
-      },
-    });
   };
 
   return (
@@ -80,28 +45,11 @@ function StdList() {
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold text-center mb-6">
-            สถานะการเข้าเรียนล่าสุด
+            ตรวจสอบสถานะการเข้าเรียน
           </h1>
-
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button
-              onClick={goToAttenStat}
-              className="text-gray-900 underline"
-            >
-              สถิติการเข้าเรียน
-            </button>
-          </div>
 
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
             <div className="flex justify-between">
-            <button onClick={goToEnrolledStudents}
-                type="button"
-                className="text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-1.5 me-2 mb-2 shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
-              >
-                รายชื่อนักศึกษา
-              </button>
-
-
               <div>
                 <select
                   value={status}
@@ -112,30 +60,6 @@ function StdList() {
                   <option value="เข้าเรียน">เข้าเรียน</option>
                   <option value="ขาดเรียน">ขาดเรียน</option>
                 </select>
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  placeholder="วัน"
-                  value={day}
-                  onChange={handleDayChange}
-                  className="border px-2 py-1 me-2"
-                />
-                <input
-                  type="text"
-                  placeholder="เดือน"
-                  value={month}
-                  onChange={handleMonthChange}
-                  className="border px-2 py-1 me-2"
-                />
-                <input
-                  type="text"
-                  placeholder="ปี พ.ศ."
-                  value={year}
-                  onChange={handleYearChange}
-                  className="border px-2 py-1 me-2"
-                />
               </div>
             </div>
 
@@ -190,7 +114,15 @@ function StdList() {
                         <td className="px-6 py-4">{time}</td>
                         <td className="px-6 py-4">{formattedDate}</td>
                         <td className="px-6 py-4">
-                          <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                          <span
+                            className={
+                              student.status === "เข้าเรียน"
+                                ? "bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
+                                : student.status === "ขาดเรียน"
+                                ? "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300"
+                                : "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-900 dark:text-gray-300"
+                            }
+                          >
                             {student.status}
                           </span>
                         </td>
@@ -209,4 +141,4 @@ function StdList() {
   );
 }
 
-export default StdList;
+export default Status;
