@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom"; // import useNavigate
-import Navbar from "../components/NavbarTeacher";
+import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Status() {
   const { course_code } = useParams();
@@ -14,7 +14,7 @@ function Status() {
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const response = await axios.get("'http://localhost:3000/enroll/by", {
+        const response = await axios.get('http://localhost:3000/enroll/by', {
           params: { course_code, status },
         });
 
@@ -38,15 +38,6 @@ function Status() {
     setStatus(e.target.value);
   };
 
-  const goToAttenStat = () => {
-    navigate("/AttenStat", {
-      state: {
-        course_code: course_code,
-        course_name: courseName,
-      },
-    });
-  };
-
   return (
     <div>
       <Navbar />
@@ -59,14 +50,6 @@ function Status() {
 
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
             <div className="flex justify-between">
-              <button
-                type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                onClick={goToAttenStat} // Add functionality if needed
-              >
-                ดูรายละเอียด
-              </button>
-
               <div>
                 <select
                   value={status}
@@ -102,6 +85,9 @@ function Status() {
                     </th>
                     <th scope="col" className="px-6 py-3">
                       สถานะ
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      อีเมล
                     </th>
                   </tr>
                 </thead>
