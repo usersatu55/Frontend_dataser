@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavbarTeacher";
 import axios from "axios";
 
@@ -11,37 +11,44 @@ function TeacherAddCourse() {
   const [timeSlots, setTimeSlots] = useState([
     { day: "", start_time: "", end_time: "" },
   ]);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const courseData = {
-      course_code: courseCode,
-      course_name: courseName,
-      course_time_slots: timeSlots,
-      attendance_status: "closed",
-    };
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("กรุณาเข้าสู่ระบบ");
+      navigate("/");
+      return;
+    }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3000/courses/create",
-        courseData
+        {
+          course_code: courseCode,
+          course_name: courseName,
+          course_time_slots: timeSlots,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      alert("Course created successfully!");
 
-      setCourseCode("");
-      setCourseName("");
-      setTimeSlots([{ day: "", start_time: "", end_time: "" }]);
-    } catch (error) {
-      console.error("There was an error creating the course!", error);
-      alert("Failed to create course");
+      alert("สร้างคอร์สสำเร็จ");
+    } catch (err) {
+      console.error(err);
+      alert("สร้างคอร์สไม่สำเร็จ");
     }
   };
 
-  const handleSlotChange = (index, event) => {
-    const newSlots = [...timeSlots];
-    newSlots[index][event.target.name] = event.target.value;
-    setTimeSlots(newSlots);
+  const handleSlotChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedTimeSlots = [...timeSlots];
+    updatedTimeSlots[index][name] = value;
+    setTimeSlots(updatedTimeSlots);
   };
 
   const addSlot = () => {
@@ -49,8 +56,9 @@ function TeacherAddCourse() {
   };
 
   const removeSlot = (index) => {
-    const newSlots = timeSlots.filter((_, i) => i !== index);
-    setTimeSlots(newSlots);
+    const updatedTimeSlots = [...timeSlots];
+    updatedTimeSlots.splice(index, 1);
+    setTimeSlots(updatedTimeSlots);
   };
 
   return (

@@ -29,7 +29,7 @@ function TeacherList() {
     if (confirmOpen) {  
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.post(
+        await axios.post(
           'http://localhost:3000/atten/open',
           { course_code: courseCode },
           {
@@ -85,7 +85,7 @@ function TeacherList() {
                         onClick={() => openAttendance(course.course_code)}
                         className="text-blue-600 hover:text-blue-800"
                       >
-                        เปิดระบบเช็คชื่ออออ
+                        เปิดระบบเช็คชื่อ
                       </button>
                     </td>
                   </tr>
