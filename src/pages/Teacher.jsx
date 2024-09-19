@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { useEffect, useState } from 'react';
 import Navbar from '../components/NavbarTeacher';
 import axios from 'axios';
 
@@ -30,7 +29,7 @@ function TeacherList() {
     if (confirmOpen) {  
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.post(
+        await axios.post(
           'http://localhost:3000/atten/open',
           { course_code: courseCode },
           {
