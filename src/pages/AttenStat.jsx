@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import NavbarTeacher from "../components/NavbarTeacher";
 
 function AttenStat() {
   const [students, setStudents] = useState([]);
@@ -42,7 +42,7 @@ function AttenStat() {
 
   return (
     <div>
-      <Navbar />
+      <NavbarTeacher />
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold text-center mb-6">
