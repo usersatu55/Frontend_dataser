@@ -86,7 +86,7 @@ function TeacherList() {
                         onClick={() => openAttendance(course.course_code)}
                         className="text-blue-600 hover:text-blue-800"
                       >
-                        เปิดระบบเช็คชื่ออออ
+                        เปิดระบบเช็คชื่อ
                       </button>
                     </td>
                   </tr>
