@@ -1,0 +1,21 @@
+/* styles.css */
+
+.layout-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Adjust the column width as needed */
+    gap: 1rem; /* Space between sidebar and content */
+  }
+  
+  .navbar {
+    grid-column: 1; /* Sidebar takes the first column */
+  }
+  
+  .content {
+    grid-column: 2; /* Content takes the second column */
+    padding: 1rem;
+  }
+  
+  .full-width {
+    grid-column: 1 / -1; /* Full width when not using the sidebar */
+  }
+  

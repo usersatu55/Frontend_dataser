@@ -37,6 +37,7 @@ function EnrolledStudentsList() {
           <h1 className="text-2xl font-bold text-center mb-6">
             รายชื่อนักศึกษาที่ลงทะเบียน
           </h1>
+          
           <div className="relative overflow-x-auto sm:rounded-lg">
             <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-center text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
