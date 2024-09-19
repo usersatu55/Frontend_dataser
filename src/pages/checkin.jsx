@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function CheckIn() {
   const { course_code } = useParams();
