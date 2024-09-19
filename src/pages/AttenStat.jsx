@@ -22,49 +22,21 @@ function AttenStat() {
     fetchStudents();
   }, []);
 
-  const toggleStatus = (index) => {
-    setStudents((prevStudents) => {
-      const newStudents = [...prevStudents];
-      const currentStatus = newStudents[index].status;
-
-      if (currentStatus === "present") {
-        newStudents[index].status = "late";
-      } else if (currentStatus === "late") {
-        newStudents[index].status = "absent";
-      } else if (currentStatus === "absent") {
-        newStudents[index].status = "leave";
-      } else {
-        newStudents[index].status = "present";
-      }
-
-      return newStudents;
-    });
-  };
-
-  const renderStatusCircle = (status, index) => {
-    let bgColor;
-    switch (status) {
-      case "present":
-        bgColor = "bg-green-500";
-        break;
-      case "late":
-        bgColor = "bg-orange-500";
-        break;
-      case "absent":
-        bgColor = "bg-red-500";
-        break;
-      case "leave":
-        bgColor = "bg-blue-500";
-        break;
-      default:
-        bgColor = "bg-gray-300";
-    }
-
+  const renderStatusCircle = (status) => {
     return (
-      <button
-        className={`inline-block w-4 h-4 ${bgColor} rounded-full`}
-        onClick={() => toggleStatus(index)}
-      />
+      <span
+        className={
+          status === "เข้าเรียน"
+            ? "bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
+            : status === "ขาดเรียน"
+            ? "bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300"
+            : status === "มาสาย"
+            ? "bg-yellow-300 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-500 dark:text-gray-300"
+            : "bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-gray-900 dark:text-gray-300"
+        }
+      >
+        {status === "เข้าเรียน" ? "✔" : status === "ขาดเรียน" ? "✘" : "-"}
+      </span>
     );
   };
 
@@ -95,18 +67,11 @@ function AttenStat() {
                     <th scope="col" className="px-6 py-3">
                       ชื่อ-นามสกุล
                     </th>
-                    <th scope="col" className="px-6 py-3">
-                      1/09/24
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      8/09/24
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      19/09/24
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      30/09/24
-                    </th>
+                    {students.map((student, index) => (
+                      <th scope="col" className="px-6 py-3">
+                        สัปห์ดาที่ {index + 1}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
@@ -127,12 +92,19 @@ function AttenStat() {
                       <td className="px-6 py-4">
                         {student.student_fname} {student.student_lname}
                       </td>
-                      {/* Each column for a different date */}
-                      {[1, 8, 19, 30].map((date) => (
-                        <td key={date} className="px-6 py-4 ">
-                          {renderStatusCircle(student.status, index)}
-                        </td>
-                      ))}
+                      <td className="px-6 py-4">
+                        <span
+                          className={
+                            student.status === "เข้าเรียน"
+                              ? "bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
+                              : student.status === "ขาดเรียน"
+                              ? "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300"
+                              : "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-900 dark:text-gray-300"
+                          }
+                        >
+                          {student.status}
+                        </span>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -140,6 +112,23 @@ function AttenStat() {
             </div>
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
+
+          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span class="flex w-2.5 h-2.5 bg-green-400 rounded-full me-1.5 flex-shrink-0"></span>
+            มาเรียน
+          </span>
+          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span class="flex w-2.5 h-2.5 bg-red-500 rounded-full me-1.5 flex-shrink-0"></span>
+            ขาดเรียน
+          </span>
+          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span class="flex w-2.5 h-2.5 bg-yellow-300 rounded-full me-1.5 flex-shrink-0"></span>
+            มาสาย
+          </span>
+          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span class="flex w-2.5 h-2.5 bg-gray-500 rounded-full me-1.5 flex-shrink-0"></span>
+            ลา
+          </span>
         </div>
       </div>
     </div>
