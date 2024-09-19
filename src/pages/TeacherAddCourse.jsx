@@ -62,8 +62,9 @@ function TeacherAddCourse() {
   };
 
   return (
+    
     <div class="flex justify-center py-10">
-      <div class="w-full max-w-lg p-6 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full max-w-xl p-6 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <Navbar />
 
         <form class="space-y-6" onSubmit={handleSubmit}>
@@ -129,22 +130,73 @@ function TeacherAddCourse() {
                   <option value="วันเสาร์">วันเสาร์</option>
                   <option value="วันอาทิตย์">วันอาทิตย์</option>
                 </select>
-                <input
-                  type="time"
-                  name="start_time"
-                  value={slot.start_time}
-                  onChange={(e) => handleSlotChange(index, e)}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
-                  required
-                />
-                <input
-                  type="time"
-                  name="end_time"
-                  value={slot.end_time}
-                  onChange={(e) => handleSlotChange(index, e)}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
-                  required
-                />
+                
+                <div className="relative">
+                  <div
+                    className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 cursor-pointer"
+                    onClick={() =>
+                      document.getElementById(`start_time_${index}`).click()
+                    }
+                  >
+                    <svg
+                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="time"
+                    id={`start_time_${index}`}
+                    name="start_time"
+                    value={slot.start_time}
+                    onChange={(e) => handleSlotChange(index, e)}
+                    className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pe-10 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                  />
+                </div>
+
+                <div className="relative">
+                  <div
+                    className="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 cursor-pointer"
+                    onClick={() =>
+                      document.getElementById(`end_time_${index}`).click()
+                    }
+                  >
+                    <svg
+                      className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="time"
+                    id={`end_time_${index}`}
+                    name="end_time"
+                    value={slot.end_time}
+                    onChange={(e) => handleSlotChange(index, e)}
+                    className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pe-10 dark:bg-gray-600 dark:border-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    
+                    required
+                  />
+                </div>
+
                 <button
                   type="button"
                   onClick={() => removeSlot(index)}
@@ -154,6 +206,7 @@ function TeacherAddCourse() {
                 </button>
               </div>
             ))}
+            
             <button
               type="button"
               onClick={addSlot}
