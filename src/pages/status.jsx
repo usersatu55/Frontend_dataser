@@ -14,7 +14,7 @@ function Status() {
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/atten/byc", {
+        const response = await axios.get("'http://localhost:3000/enroll/by", {
           params: { course_code, status },
         });
 

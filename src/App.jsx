@@ -10,6 +10,7 @@ import CourseList from './pages/CourseList'
 import TeacherAddCourse  from './pages/TeacherAddCourse';
 import Coursedetail from './pages/Coursedetail';
 import Status from './pages/status';
+import CourseListstd from './pages/CourseListstd';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
         <Route path="/detailteachers" element={isLoggedIn ? <Coursedetail /> : <Navigate to="/" />} />
         <Route path="/status" element={isLoggedIn ? <Status /> : <Navigate to="/" />} />
+        <Route path="/CourseListstd/" element={<CourseListstd />} />
 
       </Routes>
     </Router>
