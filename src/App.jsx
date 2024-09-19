@@ -31,8 +31,9 @@ function App() {
         <Route path="/AttenStat" element={<AttenStat/>} />
         <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
         <Route path="/detailteachers" element={isLoggedIn ? <Coursedetail /> : <Navigate to="/" />} />
-        <Route path="/status" element={isLoggedIn ? <Status /> : <Navigate to="/" />} />
-        <Route path="/CourseListstd/" element={<CourseListstd />} />
+        <Route path="/status/:course_code" element={isLoggedIn ? <Status /> : <Navigate to="/" />} />
+        <Route path="/courseListstd/" element={<CourseListstd />} />
+       
 
       </Routes>
     </Router>
