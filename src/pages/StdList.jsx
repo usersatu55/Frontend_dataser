@@ -47,6 +47,16 @@ function StdList() {
     });
   };
 
+  const goToStd_namelist = () => {
+    navigate("/Std_namelist", {
+      state: {
+        course_code: course_code,
+        course_name: courseName,
+      },
+    });
+  };
+  
+
   return (
     <div>
       <Navbar />
@@ -65,9 +75,9 @@ function StdList() {
 
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
             <div className="flex justify-between">
-              <button
+              <button onClick={goToStd_namelist}
                 type="button"
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                className="text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-1.5 me-2 mb-2 shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
               >
                 รายชื่อนักศึกษา
               </button>
