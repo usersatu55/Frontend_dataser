@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavbarTeacher";
 import axios from "axios";
 
@@ -11,37 +11,44 @@ function TeacherAddCourse() {
   const [timeSlots, setTimeSlots] = useState([
     { day: "", start_time: "", end_time: "" },
   ]);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const courseData = {
-      course_code: courseCode,
-      course_name: courseName,
-      course_time_slots: timeSlots,
-      attendance_status: "closed",
-    };
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("กรุณาเข้าสู่ระบบ");
+      navigate("/");
+      return;
+    }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3000/courses/create",
-        courseData
+        {
+          course_code: courseCode,
+          course_name: courseName,
+          course_time_slots: timeSlots,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      alert("Course created successfully!");
 
-      setCourseCode("");
-      setCourseName("");
-      setTimeSlots([{ day: "", start_time: "", end_time: "" }]);
-    } catch (error) {
-      console.error("There was an error creating the course!", error);
-      alert("Failed to create course");
+      alert("สร้างคอร์สสำเร็จ");
+    } catch (err) {
+      console.error(err);
+      alert("สร้างคอร์สไม่สำเร็จ");
     }
   };
 
-  const handleSlotChange = (index, event) => {
-    const newSlots = [...timeSlots];
-    newSlots[index][event.target.name] = event.target.value;
-    setTimeSlots(newSlots);
+  const handleSlotChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedTimeSlots = [...timeSlots];
+    updatedTimeSlots[index][name] = value;
+    setTimeSlots(updatedTimeSlots);
   };
 
   const addSlot = () => {
@@ -49,19 +56,20 @@ function TeacherAddCourse() {
   };
 
   const removeSlot = (index) => {
-    const newSlots = timeSlots.filter((_, i) => i !== index);
-    setTimeSlots(newSlots);
+    const updatedTimeSlots = [...timeSlots];
+    updatedTimeSlots.splice(index, 1);
+    setTimeSlots(updatedTimeSlots);
   };
 
   return (
     <div class="flex justify-center py-10">
-      <div class="w-full max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div class="w-full max-w-lg p-6 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <Navbar />
 
         <form class="space-y-6" onSubmit={handleSubmit}>
-          <h5 class="text-center text-xl font-medium text-gray-900 dark:text-white">
+          <h1 class="font-bold text-center text-3xl  text-gray-900 dark:text-white">
             เพิ่มรายวิชา
-          </h5>
+          </h1>
 
           <div>
             <label
@@ -104,22 +112,22 @@ function TeacherAddCourse() {
               เวลาเรียน
             </label>
             {timeSlots.map((slot, index) => (
-              <div key={index} class="time-slot flex space-x-2 mb-2">
+              <div key={index} class="time-slot">
                 <select
                   name="day"
                   value={slot.day}
-                  onChange={(e) => handleSlotChange(index, e)}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
+                  onChange={(e) => handleSlotChange(index, e)}
                   required
                 >
-                  <option value="">Select Day</option>
-                  <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Wednesday">Wednesday</option>
-                  <option value="Thursday">Thursday</option>
-                  <option value="Friday">Friday</option>
-                  <option value="Saturday">Saturday</option>
-                  <option value="Sunday">Sunday</option>
+                  <option value="">เลือกวัน</option>
+                  <option value="วันจันทร์">วันจันทร์</option>
+                  <option value="วันอังคาร">วันอังคาร</option>
+                  <option value="วันพุธ">วันพุธ</option>
+                  <option value="วันพฤหัสบดี">วันพฤหัสบดี</option>
+                  <option value="วันศุกร์">วันศุกร์</option>
+                  <option value="วันเสาร์">วันเสาร์</option>
+                  <option value="วันอาทิตย์">วันอาทิตย์</option>
                 </select>
                 <input
                   type="time"
@@ -140,7 +148,7 @@ function TeacherAddCourse() {
                 <button
                   type="button"
                   onClick={() => removeSlot(index)}
-                  class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3.5 py-2 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                 >
                   ลบ
                 </button>
@@ -149,7 +157,7 @@ function TeacherAddCourse() {
             <button
               type="button"
               onClick={addSlot}
-              class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              class="w-full text-gray-900 bg-white border border-solid border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               เพิ่มเวลาเรียน
             </button>
@@ -157,7 +165,7 @@ function TeacherAddCourse() {
 
           <button
             type="submit"
-            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="w-full text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:border-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             สร้างคอร์ส
           </button>
