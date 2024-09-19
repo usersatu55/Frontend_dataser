@@ -4,6 +4,12 @@ import { Helmet } from "react-helmet"; // นำเข้า Helmet
 function Navbar() {
   const navigate = useNavigate();
 
+  const handleCheckname = () => {
+
+    navigate("/students")
+
+  }
+
   const handleCrourseListstd = () => {
     navigate("/courseListstd");
   };
@@ -60,6 +66,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
+                onClick={handleCheckname}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg
