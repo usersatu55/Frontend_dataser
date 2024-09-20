@@ -18,4 +18,20 @@
   .full-width {
     grid-column: 1 / -1; /* Full width when not using the sidebar */
   }
-  
+/* CSS สำหรับ Sidebar */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 256px; /* กว้างของ Sidebar */
+  height: 100vh;
+  background-color: white;
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+/* CSS สำหรับเนื้อหาหลัก */
+main {
+  margin-left: 256px; /* หรือค่าที่ตรงกับความกว้างของ Sidebar */
+  padding: 20px; /* เพิ่มการ padding ตามต้องการ */
+}
