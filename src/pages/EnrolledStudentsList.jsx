@@ -62,26 +62,11 @@ function EnrolledStudentsList() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-<<<<<<< HEAD
                   <th scope="col" className="px-6 py-3">รหัสนักศึกษา</th>
                   <th scope="col" className="px-6 py-3">ชื่อ-นามสกุล</th>
                   <th scope="col" className="px-6 py-3">หลักสูตร</th>
                   <th scope="col" className="px-6 py-3">e-mail</th>
                   <th scope="col" className="px-6 py-3">จัดการ</th>
-=======
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    รหัสนักศึกษา
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    ชื่อ-นามสกุล
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    หลักสูตร
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    e-mail
-                  </th>
->>>>>>> cf8a0f66ef3fa41da8bebf9ab4f0330b0854f972
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
