@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/StudentLayout";
+import StudentLayout from "../components/StudentLayout";
 
 function Status() {
   const { course_code } = useParams(); // Get course_code from URL parameter
