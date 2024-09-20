@@ -64,14 +64,7 @@ function StdList() {
     setYear(e.target.value);
   };
 
-  const goToAttenStat = () => {
-    navigate("/AttenStat", {
-      state: {
-        course_code: course_code,
-        course_name: courseName,
-      },
-    });
-  };
+  
 
   return (
     <div>
