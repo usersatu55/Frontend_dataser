@@ -46,7 +46,7 @@ function Student() {
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 ">
                     {course.course_name}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">รหัสวิชา: {course.course_code}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2 font-semibold">รหัสวิชา: {course.course_code}</p>
                   <p className="text-gray-600 dark:text-gray-400 mb-2">อาจารย์ผู้สอน: {course.instructor_name}</p>
                   <div className="mt-4 text-center">
                     
