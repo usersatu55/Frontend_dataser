@@ -1,0 +1,37 @@
+/* styles.css */
+
+.layout-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Adjust the column width as needed */
+    gap: 1rem; /* Space between sidebar and content */
+  }
+  
+  .navbar {
+    grid-column: 1; /* Sidebar takes the first column */
+  }
+  
+  .content {
+    grid-column: 2; /* Content takes the second column */
+    padding: 1rem;
+  }
+  
+  .full-width {
+    grid-column: 1 / -1; /* Full width when not using the sidebar */
+  }
+/* CSS สำหรับ Sidebar */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 256px; /* กว้างของ Sidebar */
+  height: 100vh;
+  background-color: white;
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+/* CSS สำหรับเนื้อหาหลัก */
+main {
+  margin-left: 256px; /* หรือค่าที่ตรงกับความกว้างของ Sidebar */
+  padding: 20px; /* เพิ่มการ padding ตามต้องการ */
+}

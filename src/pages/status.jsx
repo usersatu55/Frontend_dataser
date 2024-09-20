@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import StudentLayout from "../components/StudentLayout";
 
 function Status() {
   const { course_code } = useParams(); // Extract course_code from URL parameters
@@ -51,7 +51,11 @@ function Status() {
 
   return (
     <div>
+<<<<<<< HEAD
       <Navbar /> {/* Navbar component */}
+=======
+      <StudentLayout>
+>>>>>>> origin/main
 
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -161,7 +165,7 @@ function Status() {
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
         </div>
-      </div>
+      </div></StudentLayout>
     </div>
   );
 }
