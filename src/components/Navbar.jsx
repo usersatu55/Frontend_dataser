@@ -4,18 +4,28 @@ import { Helmet } from "react-helmet"; // นำเข้า Helmet
 function Navbar() {
   const navigate = useNavigate();
 
-  const handlestatus = () => {
-    navigate("/status");
+  const handleCheckname = () => {
+
+    navigate("/students")
+
+  }
+
+  const handleCrourseListstd = () => {
+    navigate("/courseListstd");
+  };
+  const handleStudent = () => {
+    navigate("/Student");
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+ 
 
   return (
     <div>
       <Helmet>
-        <title>ระบบเช็คชื่อ | สำหรับนักศึกษา</title> {/* ตั้งค่า title */}
+        <title>ระบบเช็คชื่อ | สำหรับนักศึกษา</title> 
       </Helmet>
       <button
         data-drawer-target="logo-sidebar"
@@ -59,6 +69,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
+                onClick={handleStudent}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg
@@ -79,7 +90,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
-                onClick={handlestatus}
+                onClick={handleCrourseListstd}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
