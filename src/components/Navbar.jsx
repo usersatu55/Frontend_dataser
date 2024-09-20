@@ -13,6 +13,9 @@ function Navbar() {
   const handleCrourseListstd = () => {
     navigate("/courseListstd");
   };
+  const handleStudent = () => {
+    navigate("/Student");
+  };
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -66,7 +69,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
-                onClick={handleCheckname}
+                onClick={handleStudent}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg
