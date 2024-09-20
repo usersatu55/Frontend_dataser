@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 function TeacherList() {
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -34,7 +33,7 @@ function TeacherList() {
     if (confirmOpen) {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.post(
+        await axios.post(
           "http://localhost:3000/atten/open",
           { course_code: courseCode },
           {
