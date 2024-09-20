@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
-import "../css/Student.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import StudentLayout from '../components/StudentLayout';
+import { Link } from 'react-router-dom'; 
 
 function Student() {
   const [courses, setCourses] = useState([]);
@@ -24,7 +23,8 @@ function Student() {
         }));
         setCourses(courseData);
       } catch (err) {
-        setError("ไม่สามารถดึงข้อมูลรายวิชาได้");
+        console.error(err);
+        setError('ไม่สามารถดึงข้อมูลรายวิชาได้');
       }
     };
 
@@ -33,7 +33,7 @@ function Student() {
 
   return (
     <div>
-      <Navbar />
+      <StudentLayout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-4xl">
           <h1 className="text-2xl font-bold text-left mb-6">
@@ -61,6 +61,7 @@ function Student() {
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
       </div>
+      </StudentLayout>
     </div>
   );
 }

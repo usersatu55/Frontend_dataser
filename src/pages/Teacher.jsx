@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../components/NavbarTeacher";
-import axios from "axios";
-import "../css/TeacherList.css";
+import { useEffect, useState } from 'react';
+import TeacherLayout from '../components/TeacherLayout';
+import axios from 'axios';
 
 function TeacherList() {
   const [courses, setCourses] = useState([]);
@@ -50,7 +48,7 @@ function TeacherList() {
 
   return (
     <div>
-      <Navbar />
+      <TeacherLayout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-4xl">
           <h1 className="text-2xl font-bold text-left mb-6">รายวิชาที่สอน</h1>
@@ -91,6 +89,7 @@ function TeacherList() {
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
       </div>
+      </TeacherLayout>
     </div>
   );
 }

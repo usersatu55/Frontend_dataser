@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
-import Navbar from '../components/NavbarTeacher';
+import TeacherLayout from '../components/TeacherLayout';
 import axios from 'axios';
 
 function CourseList() {
@@ -27,7 +27,7 @@ function CourseList() {
 
   return (
     <div>
-      <Navbar />
+      <TeacherLayout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-4xl">
           <h1 className="text-2xl font-bold text-left mb-6">รายวิชาทั้งหมด</h1>
@@ -40,7 +40,7 @@ function CourseList() {
                   <th scope="col" className="px-6 py-3">รหัสวิชา</th>
                   <th scope="col" className="px-6 py-3">ชื่อวิชา</th>
                   <th scope="col" className="px-6 py-3">วันและเวลาเรียน</th>
-               
+                  <th scope="col" className="px-6 py-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -78,6 +78,7 @@ function CourseList() {
           {error && <p className="text-red-500 mt-4">{error}</p>}
         </div>
       </div>
+      </TeacherLayout>
     </div>
   );
 }
