@@ -11,8 +11,6 @@ function Navbar() {
     navigate('/TeacherChangePassword/:student_id')
 
   }
-  
-
   const handleaddcourse = () => {
     navigate("/TeacherAddCourse/");
   };
@@ -144,26 +142,29 @@ function Navbar() {
                 </a>
               </li>
               <li>
-              <a
-                href="#"
-                onClick={handleTeacherChangePassword}
-                className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
-              >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                <a
+                  href="#"
+                  onClick={handleTeacherChangePassword}
+                  className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
                 >
-                  <path
-                    d="M4.35736 0.359375L5.38861 1.39062L2.63861 4.14062L2.12298 4.57031L1.60736 4.14062L0.232359 2.76562L1.26361 1.73438L2.12298 2.63672L4.35736 0.359375ZM7.62298 1.5625H16.5605V2.9375H7.62298V1.5625ZM4.35736 5.85938L5.38861 6.89062L2.63861 9.64062L2.12298 10.0703L1.60736 9.64062L0.232359 8.26562L1.26361 7.23438L2.12298 8.13672L4.35736 5.85938ZM7.62298 7.0625H16.5605V8.4375H7.62298V7.0625ZM4.35736 11.3594L5.38861 12.3906L2.63861 15.1406L2.12298 15.5703L1.60736 15.1406L0.232359 13.7656L1.26361 12.7344L2.12298 13.6367L4.35736 11.3594ZM7.62298 12.5625H16.5605V13.9375H7.62298V12.5625Z"
-                    fill="#202224"
-                  />
-                </svg>
-                <span className="ms-3 ">เปลี่ยนรหัสผ่าน</span>
-              </a>
-            </li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M34 2L42 10M42 10L34 18M42 10H14C11.8783 10 9.84344 10.8429 8.34315 12.3431C6.84285 13.8434 6 15.8783 6 18V22M14 46L6 38M6 38L14 30M6 38H34C36.1217 38 38.1566 37.1571 39.6569 35.6569C41.1571 34.1566 42 32.1217 42 30V26"
+                      stroke="#1E1E1E"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span className="ms-3 ">เปลี่ยนรหัสผ่าน</span>
+                </a>
+              </li>
               <li>
                 <a
                   href="#"
@@ -183,7 +184,9 @@ function Navbar() {
                       fill="#202224"
                     />
                   </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">ออกจากระบบ</span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    ออกจากระบบ
+                  </span>
                 </a>
               </li>
             </ul>
