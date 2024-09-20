@@ -4,6 +4,11 @@ import { Helmet } from "react-helmet";
 function Navbar() {
   const navigate = useNavigate();
 
+  const handleTeacherChangePassword = () => {
+
+    navigate('/TeacherChangePassword/:student_id')
+
+  }
   
 
   const handleaddcourse = () => {
@@ -140,7 +145,7 @@ function Navbar() {
             <li>
               <a
                 href="#"
-                onClick={handleCourseList}
+                onClick={handleTeacherChangePassword}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg
