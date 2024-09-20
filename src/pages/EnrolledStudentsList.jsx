@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import StudentLayout from "../components/StudentLayout";
+import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "../components/NavbarTeacher";
 
 function EnrolledStudentsList() {
   const { course_code } = useParams();
   const [enrolledStudents, setEnrolledStudents] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEnrolledStudents = async () => {
@@ -15,19 +16,39 @@ function EnrolledStudentsList() {
           params: { course_code },
         });
 
-        if (response.data.Enrollments.length > 0) {
+        console.log('Response data:', response.data);
+        if (response.data.Enrollments && response.data.Enrollments.length > 0) {
           setEnrolledStudents(response.data.Enrollments);
         } else {
           setEnrolledStudents([]);
         }
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching students:', err); 
         setError("Failed to fetch enrolled students");
       }
     };
 
     fetchEnrolledStudents();
   }, [course_code]);
+
+  const handleDelete = async (student_id) => {
+    const confirmDelete = window.confirm(`คุณต้องการลบนักศึกษา รหัส ${student_id} หรือไม่?`);
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:3000/student/del`, {
+          params: { student_id }
+        });
+        setEnrolledStudents(enrolledStudents.filter(student => student.student_id !== student_id));
+      } catch (err) {
+        console.error(err);
+        setError("Failed to delete student");
+      }
+    }
+  };
+
+  const handleUpdate = (student_id) => {
+    navigate(`/TeacherUpdate/${student_id}`);
+  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
@@ -41,18 +62,11 @@ function EnrolledStudentsList() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    รหัสนักศึกษา
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    ชื่อ-นามสกุล
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    หลักสูตร
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    e-mail
-                  </th>
+                  <th scope="col" className="px-6 py-3">รหัสนักศึกษา</th>
+                  <th scope="col" className="px-6 py-3">ชื่อ-นามสกุล</th>
+                  <th scope="col" className="px-6 py-3">หลักสูตร</th>
+                  <th scope="col" className="px-6 py-3">e-mail</th>
+                  <th scope="col" className="px-6 py-3">จัดการ</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -69,6 +83,20 @@ function EnrolledStudentsList() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {student.student_email}
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => handleUpdate(student.student_id)}
+                        className="text-blue-500 hover:text-blue-700"
+                      >
+                        อัพเดต
+                      </button>
+                      <button
+                        onClick={() => handleDelete(student.student_id)}
+                        className="ml-4 text-red-500 hover:text-red-700"
+                      >
+                        ลบ
+                      </button>
                     </td>
                   </tr>
                 ))}

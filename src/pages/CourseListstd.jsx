@@ -19,12 +19,12 @@ function CourseListstd() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        // Assuming the API response structure is similar to `Student`
+       
         const courseData = response.data.Enrollments.map((enrollment) => ({
           course_code: enrollment.course_code,
           course_name: enrollment.course_name,
           instructor_name: `${enrollment.instructor_fname} ${enrollment.instructor_lname}`,
-          course_time_slots: enrollment.course_time_slots, // assuming this is in the response
+          course_time_slots: enrollment.course_time_slots,
         }));
 
         setCourses(courseData);
@@ -75,7 +75,7 @@ function CourseListstd() {
                     </td>
                     <td className="px-6 py-4 text-center">
                       <Link
-                        to={`/status/${course.course_code}`}  // ลิงก์ไปยัง status
+                        to={`/status/${course.course_code}`}  
                         className="text-green-600 hover:text-green-800"
                       >
                         ตรวจสอบการเช็คชื่อ
