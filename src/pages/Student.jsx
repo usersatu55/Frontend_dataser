@@ -52,7 +52,7 @@ function Student() {
                     
                     <Link
                       to={`/checkin/${course.course_code}`}
-                      className="text-blue-600 hover:text-blue-800 font-semibold"
+                      className="text-blue-600 font-semibold"
                     >
                       เช็คชื่อเข้าเรียน
                     </Link>
