@@ -7,6 +7,7 @@ import "../css/TeacherAddCourse.css";
 
 function TeacherAddCourse() {
   const [courseCode, setCourseCode] = useState("");
+  const [seatLimit, setSeatLimit] = useState("");
   const [courseName, setCourseName] = useState("");
   const [timeSlots, setTimeSlots] = useState([
     { day: "", start_time: "", end_time: "" },
@@ -29,6 +30,7 @@ function TeacherAddCourse() {
           course_code: courseCode,
           course_name: courseName,
           course_time_slots: timeSlots,
+          seat_limit: seatLimit,
         },
         {
           headers: {
@@ -40,7 +42,14 @@ function TeacherAddCourse() {
       alert("สร้างคอร์สสำเร็จ");
     } catch (err) {
       console.error(err);
-      alert("สร้างคอร์สไม่สำเร็จ");
+      if (err.response) {
+        console.error("Error Response:", err.response.data);
+        alert(
+          `สร้างคอร์สไม่สำเร็จ: ${err.response.data.message || "ไม่ทราบสาเหตุ"}`
+        );
+      } else {
+        alert("สร้างคอร์สไม่สำเร็จ: ไม่สามารถติดต่อเซิร์ฟเวอร์");
+      }
     }
   };
 
@@ -103,6 +112,24 @@ function TeacherAddCourse() {
                   name="course_name"
                   value={courseName}
                   onChange={(e) => setCourseName(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="seatLimit"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  จำนวนที่นั่ง
+                </label>
+                <input
+                  type="number"
+                  id="seatLimit"
+                  name="seat_limit"
+                  value={seatLimit}
+                  onChange={(e) => setSeatLimit(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                 />
