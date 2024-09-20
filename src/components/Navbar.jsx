@@ -4,6 +4,12 @@ import { Helmet } from "react-helmet"; // นำเข้า Helmet
 function Navbar() {
   const navigate = useNavigate();
 
+  const handleCheckname = () => {
+
+    navigate("/students")
+
+  }
+
   const handleCrourseListstd = () => {
     navigate("/courseListstd");
   };
@@ -19,7 +25,7 @@ function Navbar() {
   return (
     <div>
       <Helmet>
-        <title>ระบบเช็คชื่อ | สำหรับนักศึกษา</title> {/* ตั้งค่า title */}
+        <title>ระบบเช็คชื่อ | สำหรับนักศึกษา</title> 
       </Helmet>
       <button
         data-drawer-target="logo-sidebar"
