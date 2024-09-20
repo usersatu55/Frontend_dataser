@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom"; 
-import Navbar from "../components/NavbarTeacher";
+import Layout from '../components/TeacherLayout';
 
 function StdList() {
   const { course_code } = useParams();
@@ -64,19 +64,11 @@ function StdList() {
     setYear(e.target.value);
   };
 
-  const goToAttenStat = () => {
-    navigate("/AttenStat", {
-      state: {
-        course_code: course_code,
-        course_name: courseName,
-      },
-    });
-  };
+  
 
   return (
     <div>
-      <Navbar />
-
+  <Layout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold text-center mb-6">
@@ -201,6 +193,7 @@ function StdList() {
           </div>
         </div>
       </div>
+      </Layout>
     </div>
   );
 }
