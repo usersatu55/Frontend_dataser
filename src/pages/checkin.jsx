@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import StudentLayout from '../components/StudentLayout';
 
 function CheckIn() {
   const { course_code } = useParams();
@@ -40,7 +40,7 @@ function CheckIn() {
 
   return (
     <div>
-      <Navbar />
+      <StudentLayout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-2xl bg-white p-6 shadow-lg rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-6">
@@ -69,6 +69,7 @@ function CheckIn() {
           {status && <p className="text-center mt-4 text-lg">{status}</p>}
         </div>
       </div>
+      </StudentLayout>
     </div>
   );
 }
