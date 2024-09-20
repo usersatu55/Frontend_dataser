@@ -1,75 +1,72 @@
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";  // นำเข้า Helmet
+import { Helmet } from "react-helmet";
+import PropTypes from 'prop-types';
+import '../css/globals.css';
 
 function Navbar() {
-  const navigate = useNavigate();
-
-  const handleaddcourse = () => {
-    navigate("/TeacherAddCourse/");
-  };
-
-  const handleCourseList = () => {
-    navigate("/teachers");
-  };
-
-  const handlecheckname = () => {
-    navigate("/CourseList");
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
+    const navigate = useNavigate();
+  
+    const handleCrourseListstd = () => {
+      navigate("/courseListstd");
+    };
+    const handleStudent = () => {
+      navigate("/Student");
+    };
+    const handleLogout = () => {
+      localStorage.removeItem("token");
+      navigate("/");
+    };
+   
 
   return (
-    <div>
+    <nav>
       <Helmet>
-        <title>ระบบเช็คชื่อ | สำหรับอาจารย์</title> {/* ตั้งค่า title */}
+        <title>ระบบเช็คชื่อ | สำหรับนักศึกษา</title>
       </Helmet>
-      <button
-        data-drawer-target="logo-sidebar"
-        data-drawer-toggle="logo-sidebar"
-        aria-controls="logo-sidebar"
-        type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span className="sr-only">เปิด Sidebar</span>
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="sidebar">
+        <button
+          data-drawer-target="logo-sidebar"
+          data-drawer-toggle="logo-sidebar"
+          aria-controls="logo-sidebar"
+          type="button"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
-      </button>
+          <span className="sr-only">Open sidebar</span>
+          <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              fillRule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+            ></path>
+          </svg>
+        </button>
 
-      <aside
-        id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-white">
-          <div className="logo text-center p-2">
-            <span className="text-[#2A2F3C] text-xl font-bold text-center mb-5 ">
-              ระบบ
-            </span>
-            <span className="text-[#4880FF] text-xl font-bold text-center mb-5">
-              เช็คชื่อ
-            </span>
-          </div>
+        <aside
+          id="logo-sidebar"
+          className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+          aria-label="Sidebar"
+        >
+          <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            <a className="flex items-center ps-2.5 mb-5 justify-center">
+              <span className="text-[#2A2F3C] text-xl font-bold text-center mb-5 ">
+                ระบบ
+              </span>
+              <span className="text-[#4880FF] text-xl font-bold text-center mb-5">
+                เช็คชื่อ
+              </span>
+            </a>
 
-          <ul className="menu font-medium">
+            <ul className="space-y-2 font-medium">
             <li>
               <a
                 href="#"
-                onClick={handleCourseList}
+                onClick={handleStudent}
                 className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
               >
                 <svg
@@ -84,13 +81,13 @@ function Navbar() {
                     fill="#202224"
                   />
                 </svg>
-                <span className="ms-3 ">รายวิชาที่สอน</span>
+                <span className="ms-3 ">เช็คชื่อเข้าเรียน</span>
               </a>
             </li>
             <li>
               <a
                 href="#"
-                onClick={handlecheckname}
+                onClick={handleCrourseListstd}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -108,32 +105,7 @@ function Navbar() {
                 <span className="ms-3">ตรวจสอบการเช็คชื่อ</span>
               </a>
             </li>
-            
-            <li>
-              <a
-                href="#"
-                onClick={handleaddcourse}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M24 10V38M10 24H38"
-                    stroke="#1E1E1E"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
 
-                <span className="ms-3">เพิ่มรายวิชา</span>
-              </a>
-            </li>
             <li>
               <a
                 href="#"
@@ -152,15 +124,36 @@ function Navbar() {
                     fill="#202224"
                   />
                 </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">ออกจากระบบ</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  ออกจากระบบ
+                </span>
               </a>
             </li>
-          </ul>
-        </div>
-      </aside>
-    </div>
-    
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </nav>
   );
 }
 
-export default Navbar;
+const StudentLayout = ({ children }) => {
+  return (
+    <div>
+      <Helmet>
+        <title>ระบบเช็คชื่อ</title>
+      </Helmet>
+      <Navbar />
+      <div className="p-4 sm:ml-64">
+        <main>{children}</main>
+      </div>
+    </div>
+  );
+};
+
+StudentLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+
+export default StudentLayout;

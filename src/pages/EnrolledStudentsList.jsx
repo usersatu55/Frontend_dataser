@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/NavbarTeacher";
+import StudentLayout from "../components/StudentLayout";
 
 function EnrolledStudentsList() {
   const { course_code } = useParams();
@@ -31,7 +31,7 @@ function EnrolledStudentsList() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
-      <Navbar />
+      <StudentLayout>
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
           <h1 className="text-3xl font-semibold text-gray-900 mb-6 text-center">
@@ -78,7 +78,9 @@ function EnrolledStudentsList() {
           </div>
         </div>
       </main>
+      </StudentLayout>
     </div>
+    
   );
 }
 

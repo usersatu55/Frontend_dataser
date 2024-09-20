@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import StudentLayout from "../components/StudentLayout";
 
 function Status() {
   const { course_code } = useParams();
@@ -40,7 +40,7 @@ function Status() {
 
   return (
     <div>
-      <Navbar />
+      <StudentLayout>
 
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -136,7 +136,7 @@ function Status() {
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
         </div>
-      </div>
+      </div></StudentLayout>
     </div>
   );
 }
