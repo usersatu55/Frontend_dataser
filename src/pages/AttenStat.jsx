@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import NavbarTeacher from "../components/NavbarTeacher";
+import TeacherLayout from "../components/TeacherLayout";
 
 function AttenStat() {
   const [students, setStudents] = useState([]);
@@ -15,6 +15,7 @@ function AttenStat() {
         const response = await axios.get("http://localhost:3000/atten/");
         setStudents(response.data.Attendance);
       } catch (err) {
+        console.error(err);
         setError("Failed to fetch students");
       }
     };
@@ -42,7 +43,7 @@ function AttenStat() {
 
   return (
     <div>
-      <NavbarTeacher />
+      <TeacherLayout>
       <div className="flex justify-center py-8">
         <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold text-center mb-6">
@@ -69,7 +70,7 @@ function AttenStat() {
                     </th>
                     {students.map((student, index) => (
                       <th scope="col" className="px-6 py-3">
-                        สัปห์ดาที่ {index + 1}
+                        สัปดาห์ที่ {index + 1}
                       </th>
                     ))}
                   </tr>
@@ -113,24 +114,25 @@ function AttenStat() {
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
 
-          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
-            <span class="flex w-2.5 h-2.5 bg-green-400 rounded-full me-1.5 flex-shrink-0"></span>
+          <span className="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span className="flex w-2.5 h-2.5 bg-green-400 rounded-full me-1.5 flex-shrink-0"></span>
             มาเรียน
           </span>
-          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
-            <span class="flex w-2.5 h-2.5 bg-red-500 rounded-full me-1.5 flex-shrink-0"></span>
+          <span className="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span className="flex w-2.5 h-2.5 bg-red-500 rounded-full me-1.5 flex-shrink-0"></span>
             ขาดเรียน
           </span>
-          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
-            <span class="flex w-2.5 h-2.5 bg-yellow-300 rounded-full me-1.5 flex-shrink-0"></span>
+          <span className="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span className="flex w-2.5 h-2.5 bg-yellow-300 rounded-full me-1.5 flex-shrink-0"></span>
             มาสาย
           </span>
-          <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
-            <span class="flex w-2.5 h-2.5 bg-gray-500 rounded-full me-1.5 flex-shrink-0"></span>
+          <span className="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3">
+            <span className="flex w-2.5 h-2.5 bg-gray-500 rounded-full me-1.5 flex-shrink-0"></span>
             ลา
           </span>
         </div>
       </div>
+      </TeacherLayout>
     </div>
   );
 }

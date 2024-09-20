@@ -11,8 +11,12 @@ import CheckNameInRoll from './pages/CheckNameInRoll';
 import EnrolledStudentsList  from './pages/EnrolledStudentsList';
 import Status from "./pages/status"
 import CourseListstd from './pages/CourseListstd';
+<<<<<<< HEAD
 import TeacherUpdateStudent from './pages/TeacherUpdateStudent'
 import TeacherChangePassword from './pages/TeacherChangePassword'
+=======
+import Student from './pages/Student';
+>>>>>>> cf8a0f66ef3fa41da8bebf9ab4f0330b0854f972
 function App() {
   const token = localStorage.getItem('token'); 
   const isLoggedIn = !!token; 
@@ -21,18 +25,33 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/students" element={isLoggedIn ? <StudentList /> : <Navigate to="/" />} />
-        <Route path="/teachers" element={isLoggedIn ? <TeacherList /> : <Navigate to="/" />} />
-        <Route path="/StdList" element={isLoggedIn ? <StdList/> : <Navigate to="/" />} />
-        <Route path="/AttenStat" element={isLoggedIn ? <AttenStat/> : <Navigate to="/" />} />
+        <Route
+          path="/students"
+          element={isLoggedIn ? <StudentList /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/teachers"
+          element={isLoggedIn ? <TeacherList /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/StdList"
+          element={isLoggedIn ? <StdList /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/AttenStat"
+          element={isLoggedIn ? <AttenStat /> : <Navigate to="/" />}
+        />
         <Route path="/checkin/:course_code" element={<CheckIn />} />
         <Route path="/CourseList/" element={<CourseList />} />
-        <Route path="/checkinstatus/:course_code" element={<StdList/>} />      
-        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
-        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse/>} />
-        <Route path="/CheckNameInRoll" element={<CheckNameInRoll/>} />
-        <Route path="/enrollments/:course_code" element={<EnrolledStudentsList />} />
-        <Route path="/status/:course_code" element={<Status/>} />
+        <Route path="/checkinstatus/:course_code" element={<StdList />} />
+        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse />} />
+        <Route path="/TeacherAddCourse/" element={<TeacherAddCourse />} />
+        <Route path="/CheckNameInRoll" element={<CheckNameInRoll />} />
+        <Route
+          path="/enrollments/:course_code"
+          element={<EnrolledStudentsList />}
+        />
+        <Route path="/status/:course_code" element={<Status />} />
         <Route path="/CourseListstd/" element={<CourseListstd />} />
         <Route path="/TeacherUpdate/:student_id" element={<TeacherUpdateStudent />} />
         <Route path="/TeacherChangePassword/:student_id" element={<TeacherChangePassword />} />

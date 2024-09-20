@@ -52,7 +52,7 @@ const Login = () => {
           <label htmlFor="email" className="block text-gray-700 mb-2">อีเมล</label>
           <input
             type="email"
-            placeholder="nongbee.ku@gmail.com"
+            placeholder="กรุณากรอกอีเมล์ของคุณ"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
