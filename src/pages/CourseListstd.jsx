@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; 
 import StudentLayout from '../components/StudentLayout';
 import axios from 'axios';
 
 function CourseListstd() {
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -73,14 +74,18 @@ function CourseListstd() {
                         </div>
                       ))}
                     </td>
-                    <td className="px-6 py-4 text-center">
-                      <Link
-                        to={`/status/${course.course_code}`}  
-                        className="text-green-600 hover:text-green-800"
-                      >
-                        ตรวจสอบการเช็คชื่อ
-                      </Link>
-                    </td>
+
+                      <td className="px-6 py-4  w-48">
+                        <button
+                          onClick={() =>
+                            navigate(`/status/${course.course_code}`)
+                          }
+                          type="button"
+                          className="text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-2 py-2 shadow-md hover:shadow-lg transition-transform transform hover:scale-95"
+                        >
+                          ตรวจสอบการเช็คชื่อ
+                        </button>
+                      </td>
                   </tr>
                 ))}
               </tbody>
