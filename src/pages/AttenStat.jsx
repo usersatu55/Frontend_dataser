@@ -69,7 +69,7 @@ function AttenStat() {
                       ชื่อ-นามสกุล
                     </th>
                     {students.map((student, index) => (
-                      <th scope="col" className="px-6 py-3">
+                      <th key={index} scope="col" className="px-6 py-3">
                         สัปดาห์ที่ {index + 1}
                       </th>
                     ))}
@@ -103,7 +103,8 @@ function AttenStat() {
                               : "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-900 dark:text-gray-300"
                           }
                         >
-                          {student.status}
+                            {renderStatusCircle(student.status)}
+
                         </span>
                       </td>
                     </tr>
