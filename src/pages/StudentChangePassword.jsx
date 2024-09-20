@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import TeacherLayout from "../components/TeacherLayout";
+import StudentLayout from "../components/StudentLayout";
 
-function TeacherChangePassword() {
+function StudentChangePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ function TeacherChangePassword() {
       const token = localStorage.getItem("token");
 
       const response = await axios.put(
-        "http://localhost:3000/teacher/update",
+        "http://localhost:3000/student/update",
         { password },
         {
           headers: {
@@ -39,7 +39,7 @@ function TeacherChangePassword() {
       setSuccess("Password updated successfully!");
       setLoading(false);
       window.alert("รหัสผ่านของคุณถูกเปลี่ยนเรียบร้อยแล้ว!");
-      navigate("/TeacherChangePassword");
+      navigate("/StudentChangePassword");
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -49,7 +49,7 @@ function TeacherChangePassword() {
 
   return (
     <div>
-      <TeacherLayout>
+      <StudentLayout>
         <div className="flex justify-center py-8">
           <div className="w-full max-w-md px-4 sm:px-6 lg:px-8">
             <h1 className="text-2xl font-bold text-center mb-6">
@@ -89,10 +89,9 @@ function TeacherChangePassword() {
             </form>
           </div>
         </div>
-     
-      </TeacherLayout>
+      </StudentLayout>
     </div>
   );
 }
 
-export default TeacherChangePassword;
+export default StudentChangePassword;
