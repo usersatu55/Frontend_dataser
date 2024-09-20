@@ -9,6 +9,9 @@ function Status() {
   const [courseName, setCourseName] = useState("");
   const [error, setError] = useState(null);
   const [status, setStatus] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   useEffect(() => {
     const fetchAttendance = async () => {
@@ -18,16 +21,15 @@ function Status() {
           setError('No token found');
           return;
         }
-        
-        // เรียก API localhost:3000/atten/by โดยส่งค่า course_code และ status
+
         const response = await axios.get('http://localhost:3000/atten/by', {
-          params: { course_code, status },
-          headers: { Authorization: `Bearer ${token}` }, // ส่ง token เพื่อยืนยันตัวตน
+          params: { course_code, status, day, month, year },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (response.data.Attendance && response.data.Attendance.length > 0) {
           setAttendance(response.data.Attendance);
-          setCourseName(response.data.Attendance[0].course_name); 
+          setCourseName(response.data.Attendance[0].course_name);
         } else {
           setAttendance([]);
           setCourseName("");
@@ -39,10 +41,22 @@ function Status() {
     };
 
     fetchAttendance();
-  }, [course_code, status]);
+  }, [course_code, status, day, month, year]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
+  };
+
+  const handleDayChange = (e) => {
+    setDay(e.target.value);
+  };
+
+  const handleMonthChange = (e) => {
+    setMonth(e.target.value);
+  };
+
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
   };
 
   return (
@@ -66,6 +80,30 @@ function Status() {
                 <option value="เข้าเรียน">เข้าเรียน</option>
                 <option value="ขาดเรียน">ขาดเรียน</option>
               </select>
+
+              <input
+                type="text"
+                value={day}
+                onChange={handleDayChange}
+                placeholder="วัน"
+                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5"
+              />
+
+              <input
+                type="text"
+                value={month}
+                onChange={handleMonthChange}
+                placeholder="เดือน"
+                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5"
+              />
+
+              <input
+                type="text"
+                value={year}
+                onChange={handleYearChange}
+                placeholder="ปี"
+                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-xs px-3 py-1.5"
+              />
             </div>
 
             <h2 className="text-xl font-semibold pb-8">
