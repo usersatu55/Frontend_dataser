@@ -10,11 +10,14 @@ function Navbar() {
     navigate("/courseListstd");
   };
   const handleStudent = () => {
-    navigate("/Student");
+    navigate("/students");
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
+  };
+  const handleCheckinCourse = () => {
+    navigate("/CourseAll");
   };
   const handleStudentChangePassword = () => {
     navigate("/StudentChangePassword");
@@ -107,11 +110,16 @@ function Navbar() {
                   <span className="ms-3">ตรวจสอบการเช็คชื่อ</span>
                 </a>
               </li>
+
               <li>
                 <a
                   href="#"
                   onClick={handleStudentChangePassword}
+<<<<<<< HEAD
                   className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+=======
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+>>>>>>> origin/main
                 >
                   <svg
                     width="16"
@@ -128,7 +136,29 @@ function Navbar() {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  <span className="ms-3 ">เปลี่ยนรหัสผ่าน</span>
+                  <span class="ms-3">เปลี่ยนรหัสผ่าน</span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onClick={handleCheckinCourse}
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <svg
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M0.4375 0.1875H1.125H14.875H15.5625V0.875V14.625V15.3125H14.875H1.125H0.4375V14.625V0.875V0.1875ZM1.8125 1.5625V7.0625H7.3125V1.5625H1.8125ZM8.6875 1.5625V7.0625H14.1875V1.5625H8.6875ZM1.8125 8.4375V13.9375H7.3125V8.4375H1.8125ZM8.6875 8.4375V13.9375H14.1875V8.4375H8.6875Z"
+                      fill="#202224"
+                    />
+                  </svg>
+                  <span className="ms-3">ลงทะเบียนเรียน</span>
                 </a>
               </li>
 
