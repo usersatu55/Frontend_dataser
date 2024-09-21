@@ -11,16 +11,9 @@ import CheckNameInRoll from './pages/CheckNameInRoll';
 import EnrolledStudentsList  from './pages/EnrolledStudentsList';
 import Status from "./pages/status"
 import CourseListstd from './pages/CourseListstd';
-<<<<<<< HEAD
 import TeacherUpdateStudent from './pages/TeacherUpdateStudent'
 import TeacherChangePassword from './pages/TeacherChangePassword'
 import CourseAll from './pages/CourseAll'
-=======
-import TeacherUpdateStudent from './pages/TeacherUpdateStudent';
-import TeacherChangePassword from './pages/TeacherChangePassword';
-import CourseAll from './pages/CourseAll';
-import StudentChangePassword from './pages/StudentChangePassword';
->>>>>>> origin/main
 function App() {
   const token = localStorage.getItem('token'); 
   const isLoggedIn = !!token; 
@@ -59,14 +52,9 @@ function App() {
         <Route path="/CourseListstd/" element={<CourseListstd />} />
         <Route path="/TeacherUpdate/:student_id" element={<TeacherUpdateStudent />} />
         <Route path="/TeacherChangePassword/:student_id" element={<TeacherChangePassword />} />
-<<<<<<< HEAD
         <Route path="/CourseAll" element={<CourseAll />} />
 
       </Routes>
-=======
-        <Route path="/CourseAll" element={<CourseAll />} /> 
-        <Route path="/StudentChangePassword" element={<StudentChangePassword />}/></Routes>
->>>>>>> origin/main
     </Router>
   );
 }
