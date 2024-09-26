@@ -5,10 +5,6 @@ import "../css/globals.css";
 
 function Navbar() {
   const navigate = useNavigate();
-  
-  const handleTeacherChangePassword = () => {
-
-    navigate('/TeacherChangePassword/')
 
   const handleTeacherChangePassword = () => {
     navigate("/TeacherChangePassword/:student_id");
