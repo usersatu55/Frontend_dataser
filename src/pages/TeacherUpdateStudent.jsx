@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import TeacherLayout from "../components/TeacherLayout";
@@ -10,21 +10,41 @@ function UpdateStudent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newStudentId, setNewStudentId] = useState(student_id); 
+  const [department, setDepartment] = useState(""); // Add department field
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch existing student data when the page loads
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/student/${student_id}`);
+        const { first_name, last_name, email, department } = response.data.student;
+        setFirstName(first_name);
+        setLastName(last_name);
+        setEmail(email);
+        setDepartment(department); // Set department field
+        setNewStudentId(student_id); 
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load student data");
+      }
+    };
+
+    fetchStudent();
+  }, [student_id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      constresponse = await axios.put(`http://localhost:3000/student/update`, {
+      const response = await axios.put(`http://localhost:3000/teacher/updateStudent`, {
         first_name: firstName,
         last_name: lastName,
         email: email,
         password: password,
-        new_student_id: newStudentId, 
-      }, {
-        params: { student_id }
+        new_student_id: newStudentId,
+        department: department 
       });
 
       setSuccess("Student updated successfully");

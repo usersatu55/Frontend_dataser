@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import PropTypes from 'prop-types';
-import '../css/globals.css';
+import PropTypes from "prop-types";
+import "../css/globals.css";
 
 function Navbar() {
   const navigate = useNavigate();
-  
+
   const handleTeacherChangePassword = () => {
-
-    navigate('/TeacherChangePassword/:student_id')
-
-  }
+    navigate("/TeacherChangePassword/");
+  };
   const handleaddcourse = () => {
     navigate("/TeacherAddCourse/");
   };
@@ -187,9 +185,9 @@ function Navbar() {
                     <path
                       d="M34 2L42 10M42 10L34 18M42 10H14C11.8783 10 9.84344 10.8429 8.34315 12.3431C6.84285 13.8434 6 15.8783 6 18V22M14 46L6 38M6 38L14 30M6 38H34C36.1217 38 38.1566 37.1571 39.6569 35.6569C41.1571 34.1566 42 32.1217 42 30V26"
                       stroke="#1E1E1E"
-                      stroke-width="4"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                   <span className="ms-3 ">เปลี่ยนรหัสผ่าน</span>
@@ -244,6 +242,5 @@ const Layout = ({ children }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
 
 export default Layout;
