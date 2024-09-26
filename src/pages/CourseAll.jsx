@@ -78,14 +78,14 @@ const CourseList = () => {
       <StudentLayout>
         <div className="flex justify-center py-8">
           <div className="w-full max-w-4xl">
-            <h1 className="text-2xl font-bold text-center mb-6">
+            <h1 className="text-2xl font-bold text-left mb-6">
               รายวิชาทั้งหมด
             </h1>
 
             <div className="relative overflow-x-auto sm:rounded-lg">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
+                  <tr className="whitespace-nowrap">
                     <th scope="col" className="px-6 py-3">
                       ลำดับ
                     </th>
@@ -132,9 +132,9 @@ const CourseList = () => {
                       <td className="px-6 py-4">
                         {course.current_enrollments}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="  text-center">
                         <button
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                          className="text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 shadow-md hover:shadow-lg transition-transform transform hover:scale-95"
                           disabled={
                             course.current_enrollments >= course.seat_limit
                           }
