@@ -22,7 +22,7 @@ const AllStudent = () => {
   }, []);
 
   const handleUpdate = (studentId) => {
-    navigate(`/update-student/${studentId}`); // เปลี่ยน URL สำหรับไปยังหน้าปรับปรุงข้อมูลนักศึกษา
+    navigate(`/TeacherUpdateStudent/${studentId}`); // เปลี่ยน URL สำหรับไปยังหน้าปรับปรุงข้อมูลนักศึกษา
   };
 
   const handleDelete = async (studentId) => {
