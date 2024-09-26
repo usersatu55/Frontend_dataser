@@ -5,13 +5,10 @@ import "../css/globals.css";
 
 function Navbar() {
   const navigate = useNavigate();
-<<<<<<< HEAD
   
   const handleTeacherChangePassword = () => {
 
     navigate('/TeacherChangePassword/')
-=======
->>>>>>> origin/main
 
   const handleTeacherChangePassword = () => {
     navigate("/TeacherChangePassword/:student_id");
