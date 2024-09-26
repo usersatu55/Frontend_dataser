@@ -58,7 +58,7 @@ function App() {
           element={<TeacherUpdateStudent />}
         />
         <Route
-          path="/TeacherChangePassword/:student_id"
+          path="/TeacherChangePassword/"
           element={<TeacherChangePassword />}
         />
         <Route path="/CourseAll" element={<CourseAll />} />

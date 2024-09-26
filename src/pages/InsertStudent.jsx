@@ -33,7 +33,7 @@ function InsertStudent() {
       setError(null);
       alert("Student inserted successfully!");
 
-      // เปลี่ยนเส้นทางหลังจากเพิ่มนักเรียน
+   
       setTimeout(() => navigate("/AllStudent/"), 2000);
     } catch (err) {
       console.error("Error response:", err.response); 

@@ -28,7 +28,7 @@ function StdList() {
         });
 
         if (response.data.Attendance.length > 0) {
-          setAllAttendance(response.data.Attendance); // Store all attendance data
+          setAllAttendance(response.data.Attendance); 
           setAttendance(response.data.Attendance);
           setCourseName(response.data.Attendance[1].course_name);
         } else {
