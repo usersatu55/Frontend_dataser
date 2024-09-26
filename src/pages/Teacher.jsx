@@ -59,24 +59,29 @@ function TeacherList() {
               {courses.map((course) => (
                 <div
                   key={course.course_code}
-                  className="course-card bg-white shadow-lg rounded-lg p-6 dark:bg-gray-800"
+                  className="course-card bg-white shadow-lg rounded-lg p-6 dark:bg-gray-800 flex flex-col justify-between h-full"
                 >
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    {course.course_name}
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-400 font-semibold mb-2">
-                    รหัสวิชา:{" "}
-                    <span className="font-semibold ">{course.course_code}</span>
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    วันและเวลาเรียน:
-                    {course.course_time_slots.map((slot, idx) => (
-                      <div key={idx}>
-                        {slot.day}: {slot.start_time} - {slot.end_time}
-                      </div>
-                    ))}
-                  </p>
-                  <div className="text-center">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      {course.course_name}
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-400 font-semibold mb-2">
+                      รหัสวิชา:{" "}
+                      <span className="font-semibold ">
+                        {course.course_code}
+                      </span>
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      วันและเวลาเรียน:
+                      {course.course_time_slots.map((slot, idx) => (
+                        <div key={idx}>
+                          {slot.day}: {slot.start_time} - {slot.end_time}
+                        </div>
+                      ))}
+                    </p>
+                  </div>
+
+                  <div className="text-center mt-auto">
                     <Link
                       onClick={(e) => {
                         e.preventDefault(); // ป้องกันการเปลี่ยนเส้นทาง
