@@ -1,23 +1,30 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
-import Login from './pages/Login';  
-import StudentList from './pages/Student';
-import TeacherList from './pages/Teacher';
-import StdList from './pages/StdList';
-import AttenStat from './pages/AttenStat';
-import CheckIn from './pages/checkin'
-import CourseList from './pages/CourseList'
-import TeacherAddCourse  from './pages/TeacherAddCourse';
-import CheckNameInRoll from './pages/CheckNameInRoll';
-import EnrolledStudentsList  from './pages/EnrolledStudentsList';
-import Status from "./pages/status"
-import CourseListstd from './pages/CourseListstd';
-import TeacherUpdateStudent from './pages/TeacherUpdateStudent'
-import TeacherChangePassword from './pages/TeacherChangePassword'
-import CourseAll from './pages/CourseAll'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Login from "./pages/Login";
+import StudentList from "./pages/Student";
+import TeacherList from "./pages/Teacher";
+import StdList from "./pages/StdList";
+import AttenStat from "./pages/AttenStat";
+import CheckIn from "./pages/checkin";
+import CourseList from "./pages/CourseList";
+import TeacherAddCourse from "./pages/TeacherAddCourse";
+import CheckNameInRoll from "./pages/CheckNameInRoll";
+import EnrolledStudentsList from "./pages/EnrolledStudentsList";
+import Status from "./pages/status";
+import CourseListstd from "./pages/CourseListstd";
+import TeacherUpdateStudent from "./pages/TeacherUpdateStudent";
+import TeacherChangePassword from "./pages/TeacherChangePassword";
+import CourseAll from "./pages/CourseAll";
 import StudentChangePassword from "./pages/StudentChangePassword";
+import InsertStudent from "./pages/InsertStudent";
+
 function App() {
-  const token = localStorage.getItem('token'); 
-  const isLoggedIn = !!token; 
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
 
   return (
     <Router>
@@ -51,11 +58,20 @@ function App() {
         />
         <Route path="/status/:course_code" element={<Status />} />
         <Route path="/CourseListstd/" element={<CourseListstd />} />
-        <Route path="/TeacherUpdate/:student_id" element={<TeacherUpdateStudent />} />
-        <Route path="/TeacherChangePassword/:student_id" element={<TeacherChangePassword />} />
+        <Route
+          path="/TeacherUpdate/:student_id"
+          element={<TeacherUpdateStudent />}
+        />
+        <Route
+          path="/TeacherChangePassword/:student_id"
+          element={<TeacherChangePassword />}
+        />
         <Route path="/CourseAll" element={<CourseAll />} />
-        <Route path="/StudentChangePassword" element={<StudentChangePassword />} />
-
+        <Route
+          path="/StudentChangePassword"
+          element={<StudentChangePassword />}
+        />
+        <Route path="/InsertStudent" element={<InsertStudent />} />
       </Routes>
     </Router>
   );
