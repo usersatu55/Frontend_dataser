@@ -28,10 +28,12 @@ const AllStudent = () => {
   const handleDelete = async (studentId) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       try {
-        await axios.delete(`/api/students/del?student_id=${studentId}`);
+        await axios.delete(
+          `http://localhost:3000/students/del?student_id=${studentId}`
+        );
         setStudents(
           students.filter((student) => student.student_id !== studentId)
-        ); // อัปเดตรายการหลังจากลบ
+        );
       } catch (err) {
         setError(err.message);
       }
