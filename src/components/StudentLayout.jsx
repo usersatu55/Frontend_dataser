@@ -20,7 +20,7 @@ function Navbar() {
     navigate("/CourseAll");
   };
   const handleStudentChangePassword = () => {
-    navigate("/StudentChangePassword");
+    navigate("/StudentChangePassword/");
   };
 
   return (
