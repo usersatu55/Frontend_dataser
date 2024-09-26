@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import TeacherLayout from "../components/TeacherLayout";
 
 function EnrolledStudentsList() {
-  const { course_code } = useParams();
+  const { course_code } = useParams(); 
   const [enrolledStudents, setEnrolledStudents] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ function EnrolledStudentsList() {
           params: { course_code },
         });
 
-        console.log('Response data:', response.data);
         if (response.data.Enrollments && response.data.Enrollments.length > 0) {
           setEnrolledStudents(response.data.Enrollments);
         } else {
@@ -35,8 +34,8 @@ function EnrolledStudentsList() {
     const confirmDelete = window.confirm(`คุณต้องการลบนักศึกษา รหัส ${student_id} หรือไม่?`);
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/student/del`, {
-          params: { student_id }
+        await axios.delete(`http://localhost:3000/enroll/del`, {
+          params: { course_code, student_id }, 
         });
         setEnrolledStudents(enrolledStudents.filter(student => student.student_id !== student_id));
       } catch (err) {
@@ -89,7 +88,7 @@ function EnrolledStudentsList() {
                         onClick={() => handleUpdate(student.student_id)}
                         className="text-blue-500 hover:text-blue-700"
                       >
-                        อัพเดต
+                      
                       </button>
                       <button
                         onClick={() => handleDelete(student.student_id)}
@@ -108,7 +107,6 @@ function EnrolledStudentsList() {
       </main>
       </TeacherLayout>
     </div>
-    
   );
 }
 

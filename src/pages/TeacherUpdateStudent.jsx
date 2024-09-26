@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import TeacherLayout from "../components/TeacherLayout";
@@ -10,21 +10,41 @@ function UpdateStudent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newStudentId, setNewStudentId] = useState(student_id); 
+  const [department, setDepartment] = useState(""); // Add department field
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch existing student data when the page loads
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/student/${student_id}`);
+        const { first_name, last_name, email, department } = response.data.student;
+        setFirstName(first_name);
+        setLastName(last_name);
+        setEmail(email);
+        setDepartment(department); // Set department field
+        setNewStudentId(student_id); 
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load student data");
+      }
+    };
+
+    fetchStudent();
+  }, [student_id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      constresponse = await axios.put(`http://localhost:3000/student/update`, {
+      const response = await axios.put(`http://localhost:3000/teacher/updateStudent`, {
         first_name: firstName,
         last_name: lastName,
         email: email,
         password: password,
-        new_student_id: newStudentId, 
-      }, {
-        params: { student_id }
+        new_student_id: newStudentId,
+        department: department 
       });
 
       setSuccess("Student updated successfully");
@@ -40,89 +60,102 @@ function UpdateStudent() {
   return (
     <div>
       <TeacherLayout>
-      <div className="flex justify-center py-8">
-        <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-bold text-center mb-6">อัพเดตข้อมูลนักศึกษา</h1>
-          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-          {success && <p className="text-green-500 text-center mb-4">{success}</p>}
-          <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="flex justify-center py-8">
+          <div className="w-full max-w-2xl px-4 sm:px-6 lg:px-8">
+            <h1 className="text-2xl font-bold text-center mb-6">อัพเดตข้อมูลนักศึกษา</h1>
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+            {success && <p className="text-green-500 text-center mb-4">{success}</p>}
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="studentId">
-                รหัสนักศึกษา
-              </label>
-              <input
-                type="text"
-                id="studentId"
-                value={newStudentId}
-                onChange={(e) => setNewStudentId(e.target.value)} 
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="studentId">
+                  รหัสนักศึกษา
+                </label>
+                <input
+                  type="text"
+                  id="studentId"
+                  value={newStudentId}
+                  onChange={(e) => setNewStudentId(e.target.value)} 
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
-                ชื่อ
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+                  ชื่อ
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
-                นามสกุล
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+                  นามสกุล
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                E-mail
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
 
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                รหัสผ่าน (ใหม่)
-              </label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="department">
+                  แผนก
+                </label>
+                <input
+                  type="text"
+                  id="department"
+                  value={department}
+                  onChange={(e) => setDepartment(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
 
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                อัพเดตข้อมูล
-              </button>
-            </div>
-          </form>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                  รหัสผ่าน (ใหม่)
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  อัพเดตข้อมูล
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
       </TeacherLayout>
     </div>
   );

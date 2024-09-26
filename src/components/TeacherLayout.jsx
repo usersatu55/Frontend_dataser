@@ -8,7 +8,7 @@ function Navbar() {
   
   const handleTeacherChangePassword = () => {
 
-    navigate('/TeacherChangePassword/:student_id')
+    navigate('/TeacherChangePassword/')
 
   }
   const handleaddcourse = () => {
