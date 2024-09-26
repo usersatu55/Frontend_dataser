@@ -11,7 +11,7 @@ const AllStudent = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/student"); // URL ของ API ที่ใช้ดึงข้อมูล
+        const response = await axios.get("http://localhost:3000/student"); 
         setStudents(response.data);
       } catch (err) {
         setError(err.message);
@@ -22,7 +22,7 @@ const AllStudent = () => {
   }, []);
 
   const handleUpdate = (studentId) => {
-    navigate(`/TeacherUpdateStudent/${studentId}`); // เปลี่ยน URL สำหรับไปยังหน้าปรับปรุงข้อมูลนักศึกษา
+    navigate(`/TeacherUpdateStudent/${studentId}`); 
   };
 
   const handleDelete = async (studentId) => {
