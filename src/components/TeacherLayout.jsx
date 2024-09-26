@@ -16,16 +16,17 @@ function Navbar() {
   const handleCourseList = () => {
     navigate("/teachers");
   };
-
   const handlecheckname = () => {
     navigate("/CourseList");
   };
-
+  const handleaddstudent = () => {
+    navigate("/InsertStudent");
+    };
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
-
+  
   return (
     <nav>
       <Helmet>
@@ -92,6 +93,8 @@ function Navbar() {
                   <span className="ms-3">รายวิชาที่สอน</span>
                 </a>
               </li>
+
+
               <li>
                 <a
                   href="#"
@@ -139,6 +142,33 @@ function Navbar() {
                   <span className="ms-3">เพิ่มรายวิชา</span>
                 </a>
               </li>
+
+              <li>
+                <a
+                  href="#"
+                  onClick={handleaddstudent}
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M24 10V38M10 24H38"
+                      stroke="#1E1E1E"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+
+                  <span className="ms-3">เพิ่มข้อมูลนักศึกษา</span>
+                </a>
+              </li>
+
               <li>
                 <a
                   href="#"
