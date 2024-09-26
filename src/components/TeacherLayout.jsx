@@ -19,14 +19,19 @@ function Navbar() {
   const handlecheckname = () => {
     navigate("/CourseList");
   };
+
+  const handleAllStudent = () => {
+    navigate("/AllStudent");
+  };
+
   const handleaddstudent = () => {
     navigate("/InsertStudent");
-    };
+  };
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
-  
+
   return (
     <nav>
       <Helmet>
@@ -94,6 +99,28 @@ function Navbar() {
                 </a>
               </li>
 
+              <li>
+                <a
+                  href="#"
+                  onClick={handleAllStudent}
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <svg
+                    className="flex-shrink-0 w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M12 12c-4.67 0-9 2.67-9 8v2h18v-2c0-5.33-4.33-8-9-8z" />{" "}
+                  </svg>
+                  <span className="ms-3">รายชื่อนักศึกษาทั้งหมด</span>
+                </a>
+              </li>
 
               <li>
                 <a
@@ -116,7 +143,6 @@ function Navbar() {
                   <span className="ms-3">ตรวจสอบการเช็คชื่อ</span>
                 </a>
               </li>
-
               <li>
                 <a
                   href="#"
