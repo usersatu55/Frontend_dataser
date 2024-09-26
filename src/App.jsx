@@ -16,8 +16,8 @@ import TeacherChangePassword from './pages/TeacherChangePassword'
 import StudentChangePassword from './pages/StudentChangePassword'
 import CourseAll from './pages/CourseAll'
 function App() {
-  const token = localStorage.getItem('token'); 
-  const isLoggedIn = !!token; 
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
 
   return (
     <Router>
@@ -56,6 +56,7 @@ function App() {
         <Route path="/StudentChangePassword/" element={<StudentChangePassword />} />
         <Route path="/CourseAll" element={<CourseAll />} />
 
+        <Route path="/CourseAll" element={<CourseAll />} />
       </Routes>
     </Router>
   );

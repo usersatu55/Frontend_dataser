@@ -42,14 +42,20 @@ function Student() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course) => (
-                <div key={course.course_code} className="course-card bg-white shadow-lg rounded-lg p-6 dark:bg-gray-800">
+                <div
+                  key={course.course_code}
+                  className="course-card bg-white shadow-lg rounded-lg p-6 dark:bg-gray-800 flex flex-col justify-between h-full"
+                >
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 ">
                     {course.course_name}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2 font-semibold">รหัสวิชา: {course.course_code}</p>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">อาจารย์ผู้สอน: {course.instructor_name}</p>
-                  <div className="mt-4 text-center">
-                    
+                  <p className="text-gray-600 dark:text-gray-400 font-semibold mb-2">
+                    รหัสวิชา: {course.course_code}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-2">
+                    อาจารย์ผู้สอน: {course.instructor_name}
+                  </p>
+                  <div className="text-center mt-auto">
                     <Link
                       to={`/checkin/${course.course_code}`}
                       className="text-blue-600 hover:text-blue-800 font-semibold"
