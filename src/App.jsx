@@ -64,11 +64,7 @@ function App() {
           element={<TeacherUpdateStudent />}
         />
         <Route
-<<<<<<< HEAD
           path="/TeacherChangePassword/"
-=======
-          path="/TeacherChangePassword"
->>>>>>> origin/main
           element={<TeacherChangePassword />}
         />
         <Route
