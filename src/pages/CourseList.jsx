@@ -31,8 +31,8 @@ function CourseList() {
       <TeacherLayout>
         <div className="flex justify-center py-8">
           <div className="w-full max-w-4xl">
-            <h1 className="text-2xl font-bold text-left mb-6">
-              รายวิชาทั้งหมด
+            <h1 className="text-2xl font-bold mb-6 text-center">
+              ตรวจสอบการเช็คชื่อของรายวิชาทั้งหมด
             </h1>
 
             <div className="relative overflow-x-auto sm:rounded-lg">

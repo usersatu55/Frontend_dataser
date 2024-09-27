@@ -70,7 +70,7 @@ function StudentChangePassword() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">
-                  ยืนยันรหัสผ่านใหม่
+                  ยืนยันรหัสผ่านอีกครั้ง
                 </label>
                 <input
                   type="password"
