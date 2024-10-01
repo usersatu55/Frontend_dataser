@@ -67,16 +67,15 @@ function CourseListstd() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-screen bg-gray-100">
       <StudentLayout>
-        <div className="flex justify-center py-8">
-          <div className="w-full max-w-4xl">
-            <h1 className="text-2xl font-bold text-center mb-6">
+        <main className="flex-1 p-6">
+          <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
+            <h1 className="text-3xl font-bold text-center mb-6">
               รายวิชาทั้งหมด
             </h1>
-
             <div className="relative overflow-x-auto sm:rounded-lg">
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <table className="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-6 py-3">
@@ -147,7 +146,7 @@ function CourseListstd() {
             </div>
             {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
-        </div>
+        </main>
       </StudentLayout>
     </div>
   );

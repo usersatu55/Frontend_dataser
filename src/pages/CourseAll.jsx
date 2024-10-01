@@ -74,10 +74,10 @@ const CourseList = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-screen bg-gray-100">
       <StudentLayout>
-        <div className="flex justify-center py-8">
-          <div className="w-full max-w-4xl">
+        <div className="flex-1 p-6">
+          <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
             <h1 className="text-2xl font-bold text-center mb-6">
               รายวิชาทั้งหมด
             </h1>
