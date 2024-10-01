@@ -50,8 +50,8 @@ function TeacherChangePassword() {
   return (
     <div>
       <TeacherLayout>
-        <div className="flex justify-center py-8">
-          <div className="w-full max-w-md px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-center py-10">
+          <div className="w-full max-w-xl p-6 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <h1 className="text-2xl font-bold text-center mb-6">
               เปลี่ยนรหัสผ่าน
             </h1>
@@ -64,32 +64,31 @@ function TeacherChangePassword() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700">
-                  ยืนยันรหัสผ่านใหม่
+                  ยืนยันรหัสผ่านอีกครั้ง
                 </label>
                 <input
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 rounded-lg"
+                className="w-full text-white bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:border-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 shadow-md hover:shadow-lg transition-transform transform hover:scale-95"
               >
                 เปลี่ยนรหัสผ่าน
               </button>
             </form>
           </div>
         </div>
-     
       </TeacherLayout>
     </div>
   );
