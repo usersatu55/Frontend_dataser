@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import TeacherLayout from "../components/TeacherLayout";
 
 function UpdateStudent() {
+  const navigate = useNavigate();
   const { student_id } = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newStudentId, setNewStudentId] = useState(student_id);
-  const [department, setDepartment] = useState(""); // Department field added
+  const [department, setDepartment] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -20,12 +21,13 @@ function UpdateStudent() {
         const response = await axios.get(
           `http://localhost:3000/update/${student_id}`
         );
+
         const { first_name, last_name, email, department } =
           response.data.student;
         setFirstName(first_name);
         setLastName(last_name);
         setEmail(email);
-        setDepartment(department); // Set department
+        setDepartment(department);
         setNewStudentId(student_id);
       } catch (err) {
         console.error(err);
@@ -53,6 +55,8 @@ function UpdateStudent() {
 
       setSuccess("Student updated successfully");
       setError(null);
+      // Redirect to /AllStudent after 2 seconds
+      setTimeout(() => navigate("/AllStudent"), 2000);
     } catch (err) {
       console.error(err);
       setError("Failed to update student");
