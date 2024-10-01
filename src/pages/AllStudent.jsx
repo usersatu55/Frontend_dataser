@@ -26,7 +26,7 @@ const AllStudent = () => {
   };
 
   const handleDelete = async (studentId) => {
-    if (window.confirm("Are you sure you want to delete this student?")) {
+    if (window.confirm("ยืนยันการลบรายชื่อนักศึกษาใช่หรือไม่")) {
       try {
         await axios.delete(
           `http://localhost:3000/student/del?student_id=${studentId}`
