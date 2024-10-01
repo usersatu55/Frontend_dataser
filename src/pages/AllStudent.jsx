@@ -71,7 +71,10 @@ const AllStudent = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {students.map((student, index) => (
-                    <tr key={index}>
+                    <tr
+                      key={index}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                         {student.student_id}
                       </td>
