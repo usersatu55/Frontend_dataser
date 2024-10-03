@@ -131,6 +131,13 @@ function TeacherList() {
                     >
                       แก้ไขรายวิชา
                     </Link>
+
+                    <Link
+                      to={`/TeacherUpdateTime/${course.course_code}`}
+                      className="text-green-600 hover:text-green-800 font-semibold block"
+                    >
+                      เปลี่ยนเวลาเรียน
+                    </Link>
                   </div>
                 </div>
               ))}

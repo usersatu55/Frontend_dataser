@@ -22,6 +22,8 @@ import StudentChangePassword from "./pages/StudentChangePassword";
 import CourseAll from "./pages/CourseAll";
 import InsertStudent from "./pages/InsertStudent";
 import AllStudent from "./pages/AllStudent";
+import TeacherUpdateCourse  from "./pages/TeacherUpdateCourse";
+import TeacherUpdateTime from "./pages/TeacherUpdateTime"
 
 
 function App() {
@@ -75,7 +77,8 @@ function App() {
         <Route path="/InsertStudent" element={<InsertStudent />} />
         <Route path="/CourseAll" element={<CourseAll />} />
         <Route path="/AllStudent" element={<AllStudent />} />
-        <Route path="/AllStudent" element={<AllStudent />} />
+        <Route path="/TeacherUpdateCourse/:course_code" element={<TeacherUpdateCourse />} />
+        <Route path="/TeacherUpdateTime/:course_code" element={<TeacherUpdateTime />} />
        
       </Routes>
     </Router>
